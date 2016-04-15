@@ -8,14 +8,14 @@ ENV JAVA_VERSION=8 \
     JAVA_HOME="/usr/lib/jvm/default-jvm" \
     GLIBC_VERSION=2.23-r1
 
-RUN apk add --no-cache --virtual=build-dependencies wget ca-certificates && \
+RUN \
+    apk add --no-cache --virtual=build-dependencies wget ca-certificates && \
     cd "/tmp" && \
 
     # Install glibc
     # https://github.com/andyshinn/alpine-pkg-glibc
     wget -q -O /etc/apk/keys/andyshinn.rsa.pub https://raw.githubusercontent.com/andyshinn/alpine-pkg-glibc/master/andyshinn.rsa.pub && \
-    wget https://github.com/andyshinn/alpine-pkg-glibc/releases/download/${GLIBC_VERSION}/glibc-${GLIBC_VERSION}.apk && \
-    apk add glibc-${GLIBC_VERSION}.apk && \
+    apk --no-cache -X http://apkproxy.heroku.com/andyshinn/alpine-pkg-glibc add glibc && \
 
     # Install Oracle JDK
     # http://java.com/en/download/manual.jsp
