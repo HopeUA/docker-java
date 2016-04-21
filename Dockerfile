@@ -5,8 +5,7 @@ MAINTAINER Sergey Sadovoi <sergey@hope.ua>
 ENV JAVA_VERSION=8 \
     JAVA_UPDATE=77 \
     JAVA_BUILD=03 \
-    JAVA_HOME="/usr/lib/jvm/default-jvm" \
-    GLIBC_VERSION=2.23-r1
+    JAVA_HOME="/usr/lib/jvm/default-jvm"
 
 RUN \
     apk add --no-cache --virtual=build-dependencies wget ca-certificates && \
