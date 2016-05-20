@@ -1,3 +1,5 @@
+language: generic
+
 env:
   global:
     secure: H07x83ur0v4fiI5kC6wbGmE/DbGiEBM+akHpqtCW5dIE8goU458SYTQ/4tnUDhdvkrCAHbmeyChcuBDCptlbChur6m/IoRRu9SGa7mKNfAFsJkDG2leMgFDbb1zylrCqnJYkLqunD6MEadpUofJHVX9WFgpN4GE5M3utFmvvq0G4Imh+fHRoJV5WFbjTWrONm91hWXbjJ9xAcvhEK2Xn2B6D5toFDC9ACAtwr3o1PowMpOAIaO8hiXS6tJbEX09pJtPi2emeUqecsmb1NiFU3EaLxAR2SxfyBEsqbqn9CNittaEA3hkjPKt7NQH0lpGx/5McoRQx02M0UPDf5+NJXylpS5PVSMRm+wfSVuErnQpbO+mMJX4E+IUfxtKEn2D5hAj5yh3rw9HiJdi1PSxReWiYv12saaGMU5FZCLQCXYMbWbh7daWAddJAFlKY0lsrck3vzpDyySc6zotd/nyN9Kq4SD8BY0XYrtl/BfeqriQQ7zYj69yDMmZ3X0fO8lEg5w11dnQhf2FsXfDP8MsDZod4SKp8p2UxVxfw1dQEDl5It44erpu3h5pozfQm+BkdpP4NOHkYwiQ8eHC/NPny5dLVNjjCGH7n0SDVl5Aqrh8cpcqgD/5ST/IBPySO2y0vfvly/wKt+/gnnupyW1+wATdXwcg6mGqpY3uVnquFdmg=
@@ -12,4 +14,4 @@ script:
   - docker run java -version
 
 after_success:
-  - curl https://registry.hub.docker.com/u/hope/java/trigger/${HUB_TOKEN}/
+  - "curl -H \"Content-Type: application/json\" --data '{\"docker_tag\": \"8\"}' -X POST https://registry.hub.docker.com/u/hope/java/trigger/${HUB_TOKEN}/"
