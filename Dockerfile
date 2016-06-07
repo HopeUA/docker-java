@@ -1,4 +1,4 @@
-FROM hope/base-alpine:3.3
+FROM hope/base-alpine:3.4
 
 MAINTAINER Sergey Sadovoi <sergey@hope.ua>
 
