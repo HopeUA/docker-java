@@ -5,16 +5,20 @@ MAINTAINER Sergey Sadovoi <sergey@hope.ua>
 ENV JAVA_VERSION=8 \
     JAVA_UPDATE=91 \
     JAVA_BUILD=14 \
-    JAVA_HOME="/usr/lib/jvm/default-jvm"
+    JAVA_HOME="/usr/lib/jvm/default-jvm" \
+    GLIBC_VERSION="2.23-r3"
 
 RUN \
     apk add --no-cache --virtual=build-dependencies wget ca-certificates && \
     cd "/tmp" && \
 
     # Install glibc
-    # https://github.com/andyshinn/alpine-pkg-glibc
-    wget -q -O /etc/apk/keys/andyshinn.rsa.pub https://raw.githubusercontent.com/andyshinn/alpine-pkg-glibc/master/andyshinn.rsa.pub && \
-    apk --no-cache -X http://apkproxy.heroku.com/andyshinn/alpine-pkg-glibc add glibc && \
+    # https://github.com/sgerrand/alpine-pkg-glibc
+    wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://raw.githubusercontent.com/sgerrand/alpine-pkg-glibc/master/sgerrand.rsa.pub && \
+    wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VERSION}/glibc-${GLIBC_VERSION}.apk && \
+    wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VERSION}/glibc-bin-${GLIBC_VERSION}.apk && \
+    wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VERSION}/glibc-i18n-${GLIBC_VERSION}.apk && \
+    apk --no-cache add glibc-${GLIBC_VERSION}.apk glibc-bin-${GLIBC_VERSION}.apk glibc-i18n-${GLIBC_VERSION}.apk && \
 
     # Install Oracle JDK
     # http://java.com/en/download/manual.jsp
