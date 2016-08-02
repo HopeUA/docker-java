@@ -3,8 +3,8 @@ FROM hope/base-alpine:3.4
 MAINTAINER Sergey Sadovoi <sergey@hope.ua>
 
 ENV JAVA_VERSION=8 \
-    JAVA_UPDATE=91 \
-    JAVA_BUILD=14 \
+    JAVA_UPDATE=101 \
+    JAVA_BUILD=13 \
     JAVA_HOME="/usr/lib/jvm/default-jvm" \
     GLIBC_VERSION="2.23-r3"
 
