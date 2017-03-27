@@ -1,12 +1,13 @@
-FROM hope/base-alpine:3.4
+FROM hope/base-alpine:3.5
 
 MAINTAINER Sergey Sadovoi <sergey@hope.ua>
 
 ENV JAVA_VERSION=8 \
-    JAVA_UPDATE=101 \
+    JAVA_UPDATE=121 \
     JAVA_BUILD=13 \
+    JAVA_HASH=e9e7ea248e2c4826b92b3f075a80e441 \
     JAVA_HOME="/usr/lib/jvm/default-jvm" \
-    GLIBC_VERSION="2.23-r3"
+    GLIBC_VERSION="2.25-r0"
 
 RUN \
     apk add --no-cache --virtual=build-dependencies wget ca-certificates && \
@@ -21,9 +22,9 @@ RUN \
     apk --no-cache add glibc-${GLIBC_VERSION}.apk glibc-bin-${GLIBC_VERSION}.apk glibc-i18n-${GLIBC_VERSION}.apk && \
 
     # Install Oracle JDK
-    # http://java.com/en/download/manual.jsp
+    # http://www.oracle.com/technetwork/java/javase/downloads/index.html
     wget --header "Cookie: oraclelicense=accept-securebackup-cookie;" \
-        "http://download.oracle.com/otn-pub/java/jdk/${JAVA_VERSION}u${JAVA_UPDATE}-b${JAVA_BUILD}/jdk-${JAVA_VERSION}u${JAVA_UPDATE}-linux-x64.tar.gz" && \
+        "http://download.oracle.com/otn-pub/java/jdk/${JAVA_VERSION}u${JAVA_UPDATE}-b${JAVA_BUILD}/${JAVA_HASH}/jdk-${JAVA_VERSION}u${JAVA_UPDATE}-linux-x64.tar.gz" && \
     tar -xzf "jdk-${JAVA_VERSION}u${JAVA_UPDATE}-linux-x64.tar.gz" && \
     mkdir -p "/usr/lib/jvm" && \
     mv "/tmp/jdk1.${JAVA_VERSION}.0_${JAVA_UPDATE}" "/usr/lib/jvm/java-${JAVA_VERSION}-oracle" && \
