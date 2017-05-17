@@ -3,9 +3,9 @@ FROM hope/base-alpine:3.5
 MAINTAINER Sergey Sadovoi <sergey@hope.ua>
 
 ENV JAVA_VERSION=8 \
-    JAVA_UPDATE=121 \
-    JAVA_BUILD=13 \
-    JAVA_HASH=e9e7ea248e2c4826b92b3f075a80e441 \
+    JAVA_UPDATE=131 \
+    JAVA_BUILD=11 \
+    JAVA_HASH=d54c1d3a095b4ff2b6607d096fa80163 \
     JAVA_HOME="/usr/lib/jvm/default-jvm" \
     GLIBC_VERSION="2.25-r0"
 
